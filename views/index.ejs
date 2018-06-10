@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/bootstrap.css">
+
+
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="javascripts/appAngular.js"></script>
+    <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+    <script src="javascripts/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+
+    <title>TestApp</title>
+</head>
+
+<body ng-app="appTestApp">
+    <div class="container-fluit">
+        <div class="nav" style="background-color: #d32f2f">
+            <div class="nav-item col-lg-2">
+                <h2>TestApp </h2>
+            </div>
+            <div class="user col-lg-10">
+                <a class="nav-item">
+                    <i class="fas fa-user-circle fa-pull-right "></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="conteiner">
+            <div class="nav">
+                <div class="menu nav-item col-lg-2 ">
+
+                    <li>
+                        <a ui-sref="test">
+                            <i class="fas fa-home  fa-pull-light"></i>Home</a>
+                    </li>
+                    <li>
+                        <a ui-sref="class">
+                            <i class="fas fa-book-open"></i>Clases</a>
+                    </li>
+                    <li>
+                        <a ui-sref="test">
+                            <i class="fas fa-cog"></i>Ajustes</a>
+                    </li>
+                    <li>
+                        <a ui-sref="test">
+                            <i class="fas fa-sign-out-alt"></i>Salir</a>
+                    </li>
+                </div>
+                <div class="col-lg-10" style="background-color:white;">
+                    <div ui-view></div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+</body>
+
+</html>

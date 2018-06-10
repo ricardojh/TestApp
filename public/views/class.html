@@ -1,0 +1,45 @@
+<div class="jumbotron">
+
+    <div style="justify-content: center;display: flex;">
+        <a ui-sref="new_class" style="color:black;">
+            <i class="fas fa-plus"></i>
+            <span> Añadir Clase</span>
+        </a>
+
+    </div>
+
+    <div class="panel panel-default bootcards-summary " style="padding-top: 50px;">
+        <div class="panel-heading" style=" padding: 10px;background-color: #d32f2f">
+            <h3 class="panel-title" style="color: white">Clases Registradas</h3>
+        </div>
+        <br>
+  
+       
+        <div class="panel-body" style="background-color: white">
+                <div class="card-columns ">
+                        <div class="card text-white bg-success mb-3" style="max-width: 18rem;" ng-repeat="clase in clases" ui-sref="cont_class">
+                            <div class="card-header">{{clase.nombre}}</div>
+                            <div class="card-body">
+                              <h5 class="card-title">{{clase.materia}}</h5>
+                              <p class="card-text">Esta clase se trata de matematicas.{{clase.nombre}}</p>
+                              <small class="label label-info" style="color: white">{{clase.materia}}</small>
+                            </div>
+                          </div>
+                    </div>
+        
+        
+        </div>
+                
+
+
+
+        </div>
+        </div>
+        <div class="panel-footer" style="background-color: #d32f2f">
+            <small style="color: white">Listado de Clases</small>
+        </div>
+    </div>
+
+
+
+</div>

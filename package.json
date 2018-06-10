@@ -1,0 +1,22 @@
+{
+  "name": "testapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bower": "^1.8.4",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "jquery": "^3.3.1",
+    "mongoose": "^5.1.4",
+    "morgan": "~1.9.0",
+    "popper": "^1.0.1",
+    "popper.js": "^1.14.3",
+    "sass": "^1.5.1"
+  }
+}
