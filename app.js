@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost/tesistestmongoose');
+mongoose.connect('mongodb://localhost/tesisversion1');
 require('./models/Clases');
 require('./models/Alumnos');
 require('./models/Evaluaciones');

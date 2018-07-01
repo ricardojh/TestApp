@@ -1,0 +1,78 @@
+<div class="jumbotron">
+   
+    <!-- Button trigger modal -->
+    <div style="justify-content: center;display: flex;">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fas fa-user-plus"></i>Añadir Alumnos
+            </button>
+    </div>
+    
+<br>
+
+
+
+
+
+<!-- tabla de Alumnos Registrados -->
+
+
+    <table class="table" >
+            <thead class="table-dark" >
+              <tr>
+                
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Notas</th>
+                <th scope="col">Promedio</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="alumno in alumnos">
+              <tr>
+                <td>{{alumno.nombre}}</td>
+                <td>{{alumno.apellido}}</td>
+                <td>{{alumno.notas}}</td>
+                <td>
+                    <button class="btn-primary" ng-click="getPromedio(alumno)">Promedio</button>    
+                </td>
+                <td>
+                  <span>
+                    <i class="fas fa-edit" ng-click="procesaObjeto(alumno)"></i>
+                  </span>
+                  <span>
+                    <i class="fas fa-trash-alt" ng-click="eliminar(alumno)"></i>
+                  </span>
+                  <span>
+                 
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+</div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Alumno</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="name">Nombre :</label>
+                        <input type="text" class="form-control" placeholder="Nombre" ng-model="alumno.nombre">
+                        <br>
+                        <label for="asignatura">Apellido:</label>
+                        <input type="text" class="form-control" placeholder="apellido " ng-model="alumno.apellido">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="agregar()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>

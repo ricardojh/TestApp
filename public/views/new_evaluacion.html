@@ -1,0 +1,30 @@
+<div class="jumbotron">
+    <label for="name">Nombre de la Evaluación:</label>
+    <input type="text" class="form-control" placeholder="Ingrese Nombre" ng-model="evaluacion.nombre_eva">
+    <br>
+    <label for="asignatura">Materia:</label>
+    <input type="text" class="form-control" placeholder="Materia " ng-model="clase.materia">
+    <br>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input">
+            </div>
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with checkbox">
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="radio" aria-label="Radio button for following text input">
+            </div>
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with radio button">
+    </div>
+    <br>
+    <button type="submit" class="btn text-white btn-lg btn-block" style="background-color: #ff1744" ng-click="agregar()">Crea Nueva Evaluación</button>
+
+
+
+</div>

@@ -9,7 +9,7 @@ var EvaluacionesSchema= new mongoose.Schema({
         nombre_eva: String,
         fecha: Date,
         cant_preguntas: Number,
-        aleatorio: Boolean,
+        opciones: Number,
         respuestas:[]
     //alumnos:{ type: mongoose.Schema.ObjectId, ref: "Alumnos"}, 
     

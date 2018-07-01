@@ -5,7 +5,7 @@ var mongoose =require('mongoose');
 
 var ClasesSchema= new mongoose.Schema({
     nombre_clase: String,
-    materia: String,
+    materia: String
     //alumnos:{ type: mongoose.Schema.ObjectId, ref: "Alumnos"}, 
      
     

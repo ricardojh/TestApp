@@ -14,7 +14,7 @@ var Evaluaciones=mongoose.model('Evaluaciones');
 
 
 
-//METODOS DEL MODELO CLASES
+//--------------------------------------------------------------METODOS DEL MODELO CLASES--------------------------------------------------------------
 //metodo get  listar clases
 router.get('/clases',function(req, res, next){
   Clases.find(function(err, clases){
@@ -46,7 +46,6 @@ router.put('/clase/:id',function(req, res, next){
   Clases.findById(req.params.id, function(err, clase){
     clase.nombre_clase=req.body.nombre_clase;
     clase.materia=req.body.materia;
-    clase.evaluaciones=req.body.evaluaciones;
     clase.save(function(err){
       if (err) {
         res.send(err)
@@ -69,7 +68,7 @@ router.delete('/clase/:id',function(req, res){
 
 
 
-//METODOS DEL MODELO ALUMNOS
+//--------------------------------------------------------------METODOS DEL MODELO ALUMNOS--------------------------------------------------------------
 //metodo get  listar alumnos
 router.get('/alumnos',function(req, res, next){
   Alumnos.find(function(err, alumnos){
@@ -85,26 +84,27 @@ router.get('/alumnos',function(req, res, next){
 router.post('/alumno', function(req, res, next){
   var alumno= new Alumnos(req.body);
 
-  alumno.save(function(err, clase){
+  alumno.save(function(err, alumno){
     if (err) {
       return next(err)
     }
-    res.json(clase);
+    res.json(alumno);
   })
 });
 
 
 //metodo put alumnos
 router.put('/alumno/:id',function(req, res, next){
-  Alumnos.findById(req.params.id, function(err, clase){
+  Alumnos.findById(req.params.id, function(err, alumno){
     alumno.nombre=req.body.nombre;
     alumno.apellido=req.body.apellido;
+    alumno.notas=req.body.notas;
     //alumno.evaluaciones=req.body.evaluaciones;
     alumno.save(function(err){
       if (err) {
         res.send(err)
       }
-      res.json(clase);
+      res.json(alumno);
     })
     })
 });
@@ -119,45 +119,46 @@ router.delete('/alumno/:id',function(req, res){
   })
 });
 
-//METODOS DEL MODELO EVALUACIONES
+//--------------------------------------------------------------METODOS DEL MODELO EVALUACIONES-----------------------------------------------------------------------
+//metodgo get evaluciones
 router.get('/evaluaciones',function(req, res, next){
-  Evaluaciones.find(function(err, clases){
+  Evaluaciones.find(function(err, evaluaciones){
     if(err){
       return next(err)
     }
 
-    res.json(clases)
+    res.json(evaluaciones)
   })
 
 
 });
 
-//metodo post insertar clases
+//metodo post insertar evaluacion
 router.post('/evaluacion', function(req, res, next){
   var evaluacion= new Evaluaciones(req.body);
 
-  evaluacion.save(function(err, clase){
+  evaluacion.save(function(err, evaluacion){
     if (err) {
       return next(err)
     }
-    res.json(clase);
+    res.json(evaluacion);
   })
 });
 
 
-//metodo put clases
+//metodo put evaluacion
 router.put('/evaluacion/:id',function(req, res, next){
-  Evaluaciones.findById(req.params.id, function(err, clase){
+  Evaluaciones.findById(req.params.id, function(err, evaluacion){
     evaluacion.nombre_eva=req.body.nombre_eva;
     evaluacion.fecha=req.body.fecha;
     evaluacion.cant_preguntas=req.body.cant_preguntas;
-    evaluacion.aleatorio=req.body.aleatorio;
+    evaluacion.cant_preguntas=req.body.opciones;
     evaluacion.respuetas=req.body.respuetas;
     evaluacion.save(function(err){
       if (err) {
         res.send(err)
       }
-      res.json(clase);
+      res.json(evaluacion);
     })
     })
 });
