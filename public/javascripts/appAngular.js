@@ -1,4 +1,7 @@
+//var objeto = require s('../../controller/objetoCtrl');
+var claseIdGlobal;
 angular.module('appTestApp', ['ui.router'])
+
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('class', {
@@ -17,15 +20,15 @@ angular.module('appTestApp', ['ui.router'])
                 templateUrl: 'views/events.html'
             })
 
-       /*  $stateProvider
+         $stateProvider
             .state('cont_class', {
                 url: '/cont_class',
                 templateUrl: 'views/cont_class.html',
-                controller: 'ctrlClass'
+                controller: 'ctrlContClase'
             })
-            .state('cont_class.students', {
-                url: '/students',
-                templateUrl: 'views/students.html',
+            .state('cont_class.alumnos', {
+                url: '/alumnos',
+                templateUrl: 'views/alumnos.html',
                 controller: 'ctrlAlumnos'
             })
             .state('cont_class.report', {
@@ -37,9 +40,10 @@ angular.module('appTestApp', ['ui.router'])
                 url: '/evaluaciones',
                 templateUrl: 'views/evaluaciones.html',
                 controller: 'ctrlEvaluaciones'
-            }) */
+            })
 
-            $stateProvider
+            /*
+              $stateProvider
             .state('evaluaciones', {
                 url: '/evaluaciones',
                 templateUrl: 'views/evaluaciones.html',
@@ -53,23 +57,27 @@ angular.module('appTestApp', ['ui.router'])
                 controller: 'ctrlAlumnos'
             })
 
+
             $stateProvider
             .state('report', {
                 url: '/report',
                 templateUrl: 'views/report.html',
                 controller: 'ctrlAlumnos'
             })
-            
-        $stateProvider
-            .state('test', {
-                url: '/test',
-                templateUrl: 'views/test.html'
-            })
+
+
         $stateProvider
             .state('upnotes', {
                 url: '/upnotes',
                 templateUrl: 'views/upnotes.html'
             })
+            */
+            $stateProvider
+                .state('test', {
+                    url: '/test',
+                    templateUrl: 'views/test.html'
+                })
+
         $stateProvider
             .state('new_class', {
                 url: '/new_class',
@@ -136,6 +144,7 @@ angular.module('appTestApp', ['ui.router'])
                 .then(function (clase) {
                     comun.clases.push(clase);
                     comun.getAll();
+
                 })
         }
         //METODO UPDATE
@@ -155,6 +164,15 @@ angular.module('appTestApp', ['ui.router'])
                     console.log("Eliminacion Correcta");
                 })
         }
+
+        comun.sub = function($scope){
+          $http.post('/view1',$scope.clase).
+        then(function(response) {
+            console.log("posted successfully");
+        }).catch(function(response) {
+            console.error("error in posting");
+        })
+        }
         return comun;
     })
 
@@ -169,7 +187,7 @@ angular.module('appTestApp', ['ui.router'])
         comun2.getAlumnos = function () {
             $http({
                 method: 'GET',
-                url: '/alumnos'
+                url: '/cont_class/alumnos'
             }).then(function successCallback(response) {
                 //comun.tareas=response.data;
                 console.log("Success", response);
@@ -182,7 +200,7 @@ angular.module('appTestApp', ['ui.router'])
         }
         //METODO ADD
         comun2.add = function (alumno) {
-            return $http.post('/clase', alumno)
+            return $http.post('/cont_class/alumno', alumno)
                 .then(function (alumno) {
                     comun2.alumnos.push(alumno);
                     comun2.getAlumnos();
@@ -190,7 +208,7 @@ angular.module('appTestApp', ['ui.router'])
         }
         //METODO UPDATE
         comun2.update = function (alumno) {
-            return $http.put('/alumno/' + alumno._id, alumno)
+            return $http.put('/cont_class/alumno/' + alumno._id, alumno)
                 .then(function (data) {
                     var indice = comun2.alumnos.indexOf(alumno);
                     comun2.alumnos[indice] = data;
@@ -198,7 +216,7 @@ angular.module('appTestApp', ['ui.router'])
         }
         //METODO DELETE
         comun2.delete = function (alumno) {
-            return $http.delete('/alumno/' + alumno._id)
+            return $http.delete('/cont_class/alumno/' + alumno._id)
                 .then(function () {
                     var indice = comun2.alumnos.indexOf(alumno);
                     comun2.alumnos.slice(indice, 1);
@@ -228,7 +246,7 @@ angular.module('appTestApp', ['ui.router'])
         comun3.getEvaluaciones = function () {
             $http({
                 method: 'GET',
-                url: '/evaluaciones'
+                url: '/cont_class/evaluaciones'
             }).then(function successCallback(response) {
                 //comun.tareas=response.data;
                 console.log("Success", response);
@@ -238,11 +256,11 @@ angular.module('appTestApp', ['ui.router'])
             }, function errorCallback(response) {
                 console.log("Error Countries", response)
             });
-            
+
         }
         //METODO ADD
         comun3.add = function (evaluacion) {
-            return $http.post('/evaluacion', evaluacion)
+            return $http.post('/cont_class/evaluacion', evaluacion)
                 .then(function (evaluacion) {
                     comun3.evaluaciones.push(evaluacion);
                     comun3.getEvaluaciones();
@@ -250,7 +268,7 @@ angular.module('appTestApp', ['ui.router'])
         }
         //METODO UPDATE
         comun3.update = function (evaluacion) {
-            return $http.put('/evaluacion/' + evaluacion._id, evaluacion)
+            return $http.put('/cont_class/evaluacion/' + evaluacion._id, evaluacion)
                 .then(function (data) {
                     var indice = comun3.evaluaciones.indexOf(evaluacion);
                     comun3.evaluaciones[indice] = data;
@@ -258,13 +276,15 @@ angular.module('appTestApp', ['ui.router'])
         }
         //METODO DELETE
         comun3.delete = function (evaluacion) {
-            return $http.delete('/evaluacion/' + evaluacion._id)
+            return $http.delete('/cont_class/evaluacion/' + evaluacion._id)
                 .then(function () {
                     var indice = comun3.evaluaciones.indexOf(evaluacion);
                     comun3.evaluaciones.slice(indice, 1);
                     console.log("Eliminacion Correcta");
                 })
         }
+
+
         return comun3;
     })
 
@@ -296,12 +316,18 @@ angular.module('appTestApp', ['ui.router'])
             comun.clase = clase;
             $state.go('editar_class');
         }
+        //METODO PASA HACER CLICK
+        $scope.procesaObjetoClase = function (clase) {
+            comun.clase = clase;
+            $state.go('cont_class');
+        }
     })
 
     //-------------------------------------------------------------------------------CONTROLADOR EDITAR CLASE-------------------------------------------------------------------
     .controller('ctrlEditarClase', function ($scope, $state, comun) {
         $scope.clase = comun.clase;
 
+        console.log('id clase guardada: '+ claseIdGlobal);
         $scope.actualizar = function () {
             comun.update($scope.clase);
             $state.go('class');
@@ -312,18 +338,28 @@ angular.module('appTestApp', ['ui.router'])
             $state.go('class');
         }
     })
+    //-------------------------------------------------------------------------------CONTROLADOR CONTENEDOR CLASE-------------------------------------------------------------------
+    .controller('ctrlContClase', function ($scope, $state, comun) {
+        $scope.clase = comun.clase;
+        console.log($scope.clase._id);
+        claseIdGlobal=$scope.clase._id;
+        console.log('id clase guardada: '+ claseIdGlobal);
 
+        comun.sub($scope);
+    })
 
 
     //---------------------------------------------------------------------------CONTROLADOR DE LOS ALUMNOS---------------------------------------------------------------------------
     .controller('ctrlAlumnos', function ($scope, $state, comun2) {
         $scope.alumno = {};
         comun2.getAlumnos();
-        
+
         $scope.alumnos = comun2.alumnos;
         //METDO AGREGAR CLASES
         $scope.agregar = function () {
+          console.log($scope.alumno.claseId);
             comun2.add({
+                claseId:claseIdGlobal,
                 nombre: $scope.alumno.nombre,
                 apellido: $scope.alumno.apellido,
                 notas: $scope.alumno.notas
@@ -356,9 +392,9 @@ angular.module('appTestApp', ['ui.router'])
                         console.log(alumno.notas);
                         console.log(values);
         }
-       
+
     })
-    
+
     //-------------------------------------------------------------------------------CONTROLADOR EDITAR ALUMNOS-------------------------------------------------------------------
     .controller('ctrlEditarAlumno', function ($scope, $state, comun2) {
         $scope.alumno = comun2.alumno;
@@ -380,7 +416,7 @@ angular.module('appTestApp', ['ui.router'])
 
         $scope.evaluacion = {};
         comun3.getEvaluaciones();
-       
+
         $scope.evaluaciones = comun3.evaluaciones;
 
         //METDO AGREGAR CLASES
@@ -393,10 +429,11 @@ angular.module('appTestApp', ['ui.router'])
             arregloDeSubCadenas = cadena.split(separador);
 
             console.log(arregloDeSubCadenas);
-            
-            
+
+
             comun3.add({
                 //claseId:$scope.clase,
+                claseId:claseIdGlobal,
                 nombre_eva: $scope.evaluacion.nombre_eva,
                 fecha: $scope.evaluacion.fecha,
                 cant_preguntas: $scope.evaluacion.cant_preguntas,
@@ -420,7 +457,7 @@ angular.module('appTestApp', ['ui.router'])
 
             $state.go('evaluaciones');
         }
-       
+
         $scope.GetRowIndex = function (index) {
             $window.alert("Row Index: " + index);
         };
@@ -432,8 +469,8 @@ angular.module('appTestApp', ['ui.router'])
         }
 
         //METODO ACTUALIZAR EVALUACION
-       
-      
+
+
 
        /*  $scope.procesaObjeto = function (evaluacion) {
             comun3.evaluacion = evaluacion;

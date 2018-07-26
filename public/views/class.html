@@ -1,67 +1,44 @@
 <div class="jumbotron" style="background-color: white">
-    
-
-
-    <div class="panel panel-default  " style="padding-top: 50px;">
-        <div class="panel-heading" style=" padding: 10px;background-color: #ff1744">
-            <h3 class="panel-title" style="color: white">Clases Registradas</h3>
-        </div>
-        <br>
-
-
-        <div class="panel-body" style="background-color: white">
-            <div style="justify-content: center;display: flex;">
-                <a ui-sref="new_class" style="color:black;">
+  <div class="panel panel-default  " style="padding-top: 50px;">
+    <div class="panel-heading" style=" padding: 10px;background-color: #2196F3">
+      <h3 class="panel-title" style="color: white">Clases Registradas</h3>
+    </div>
+    <br>
+    <div class="panel-body" style="background-color: white">
+      <div style="justify-content: center;display: flex;">
+        <a ui-sref="new_class" style="color:black;">
                     <i class="fas fa-plus"></i>
                     <span> Añadir Clase</span>
                 </a>
-
+      </div>
+      <br>
+      <div class="card-columns ">
+        <div class="card mb-3" style="max-width: 12rem; background-color:white;color: #2196F3 " ng-repeat="clase in clases">
+          <div class="card-body" ng-click="procesaObjetoClase(clase)">
+            <h5 class="card-title">{{clase.nombre_clase}}</h5>
+            <h5 class="card-title">{{clase.userId}}</h5>
+            <p class="card-text">{{clase.materia}}</p>
+          </div>
+          <small class="label label-info">
+            <div class="d-flex bd-highlight mb-3">
+              <div class="p-2 flex-fill bd-highlight" ng-click="procesaObjeto(clase)">
+                <a ui-sref="edi_class" style="color:black;">
+                    <span> Editar</span>
+                </a>
+              </div>
+              <div class="p-2 flex-fill bd-highlight"ng-click="eliminar(clase)">
+                <a ui-sref="class" style="color:black;">
+                    <span> Eliminar</span>
+                </a>
+              </div>
             </div>
-            <br>
-            <div class="card-columns ">
-                <div class="card mb-3" style="max-width: 12rem; background-color:white;color: #ff1744 " ng-repeat="clase in clases" >
-                    <div class="card-header "ui-sref="cont_class">{{clase.nombre_clase}}</div>
-                    <div class="card-body" ui-sref="cont_class">
-                        <h5 class="card-title">{{clase.materia}}</h5>
-                        <p class="card-text">Descripcion </p>
-                       
-                    </div>
-                    <small class="label label-info" style="color: red">{{clase.materia}}</small>
-                    <div class="card-footer text-muted">
-                            <div class="d-flex flex-row justify-content-center">
-                                    <div class="p-2">
-                                        <a  class="btn text-white" style="background-color: #ff1744" ng-click="procesaObjeto(clase)">
-                                            <i class="fas fa-edit"></i> Editar</a>
-                                    </div>
-                                    <div class="p-2">
-                                        <button type="button" class="btn text-white" style="background-color: #ff1744" ng-click="eliminar(clase)" >
-                                            <i class="fas fa-times"></i> Eliminar</button>
-                                    </div>
-        
-                                </div>
-                    </div>
-
-                </div>
-            </div>
-
-            
+          </small>
         </div>
-
-
-
-      
-
-
-
+      </div>
     </div>
-
-
-
-
+  </div>
 </div>
 </div>
-<div class="panel-footer" style="background-color: #ff1744">
-    <small style="color: white">Listado de Clases</small>
+<div class="panel-footer" style="background-color: #2196F3">
+  <small style="color: white">Listado de Clases</small>
 </div>
-
-

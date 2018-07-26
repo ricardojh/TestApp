@@ -1,79 +1,100 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="stylesheets/style.css">
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheets/bootstrap.css">
+	<title>LoginApp</title>
+	<link rel="stylesheet" href="/stylesheets/bootstrap.css" />
+	<link rel="stylesheet" href="/stylesheets/stylelogin.css" />
 
 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="stylesheets/style.css">
 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="stylesheets/bootstrap.css">
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="javascripts/appAngular.js"></script>
-    <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
-    <script src="javascripts/jquery-3.3.1.min.js"></script>
-    <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
-    <script src="javascripts/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="javascripts/appAngular.js"></script>
+  <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+  <script src="javascripts/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+  <script src="javascripts/bootstrap.min.js"></script>
 
-    <title>TestApp</title>
+  <title>TestApp</title>
+
 </head>
-
 <body ng-app="appTestApp">
-
-    <div class="container-fluid" style="background-color: #424242">
-        <div class="menu ">
-
-            <div class="d-flex justify-content-start">
-
-                <img src="images/Boostrap_logo.svg" width="35" height="35" alt="Boostrap_logo">
-            </div>
-            <div class="d-flex  justify-content-end">
-                <i class="fas fa-user-circle  " style="font-size: 3em"></i>
-            </div>
-
-
-        </div>
-
-
-        <div class="conteiner-fluid ">
-            <div class="contenedor row">
-                <div class=" menulateral col-sm-3 col-md-6 col-lg-2 ">
-                    <nav class="nav flex-column ">
-                        <a class="nav-link active " ui-sref="test">
-                            <i class="fas fa-home fa-fw"></i> Home</a>
-                        <a class="nav-link " ui-sref="class">
-                            <i class="fa fa-book fa-fw"></i>Clases</a>
-                        <a class="nav-link " ui-sref="alumnos">
-                                <i class="fas fa-users"></i>Alumnos </a>
-                        <a class="nav-link " ui-sref="evaluaciones">
-                                <i class="fas fa-list-ol"></i>Evaluaciones </a>
-                        <a class="nav-link " ui-sref="test">
-                            <i class="fa fa-cog fa-fw"></i>Configuracion </a>
-                        <a class="nav-link " ui-sref="test">
-                            <i class="fas fa-sign-out-alt fa-fw"></i>Ajustes</a>
-                    </nav>
-                </div>
-                <div class="col-sm-9 col-md-6 col-lg-10" style="background-color:white;">
-                    <div ui-view></div>
-
-                </div>
-
-            </div>
-        </div>
+<% if (user!= null) { %>
+  <div class="container-fluid" style="background-color: #000000">
+    <div class="menu ">
+      <div class="d-flex justify-content-start">
+        <img src="images/Boostrap_logo.svg" width="35" height="35" alt="Boostrap_logo">
+      </div>
+      <div class="d-flex  justify-content-end">
+        <i class="fas fa-user-circle  " style="font-size: 3em"></i>
+        <li role="presentation"><a href="/users/logout">Logout</a></li>
+      </div>
     </div>
 
+    <div class="conteiner-fluid ">
+      <div class="contenedor row">
+        <div class=" menulateral col-sm-3 col-md-6 col-lg-2 ">
+          <nav class="nav flex-column ">
+            <a class="nav-link active " ui-sref="test">
+                            <i class="fas fa-home fa-fw"></i> Home</a>
+            <a class="nav-link " ui-sref="class">
+                            <i class="fa fa-book fa-fw"></i>Clases</a>
+            
+            <a class="nav-link " ui-sref="test">
+                            <i class="fa fa-cog fa-fw"></i>Configuracion </a>
+            <a class="nav-link " ui-sref="test">
+                            <i class="fas fa-sign-out-alt fa-fw"></i>Ajustes</a>
+          </nav>
+        </div>
+        <div class="col-sm-9 col-md-6 col-lg-10" style="background-color:white;">
+          <div ui-view></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%} else {%>
+      <div class="container">
+          <div class="header clearfix">
+            <nav>
+              <ul class="nav nav-pills pull-right">
+                  <li role="presentation"><a href="/users/login">Login</a></li>
+                  <li role="presentation"><a href="/users/register">Register</a></li>
+              </ul>
+            </nav>
+
+            <h3 class="text-muted">LoginApp</h3>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              {{#if success_msg}}
+                <div class="alert alert-success">{{success_msg}}</div>
+              {{/if}}
+
+              {{#if error_msg}}
+                <div class="alert alert-danger">{{error_msg}}</div>
+              {{/if}}
+
+              {{#if error}}
+                <div class="alert alert-danger">{{error}}</div>
+              {{/if}}
+
+              {{{body}}}
+            </div>
+          </div>
+          <footer class="footer">
+            <p>&copy; 2015 LoginApp, Inc.</p>
+          </footer>
+
+        </div> <!-- /container -->
 
 
 
-
-
+  <% } %>
 </body>
-
-</html>

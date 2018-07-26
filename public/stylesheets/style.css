@@ -10,7 +10,7 @@ body {
     margin: 0;
     padding: 0;
     min-height: 10vh;
-    background-color: red;    
+    background-color: #424242;
     color: white;
 }
 .menu img{
@@ -44,8 +44,8 @@ nav a {
 }
 
 nav a:hover {
-    
-    color: #ff1744;
+
+    color: #2196F3;
     text-decoration: none;
     border-block-end-color: beige;
     }

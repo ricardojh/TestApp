@@ -1,23 +1,43 @@
 var express = require('express');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+var mongoose= require('mongoose');
+//var prueba = require('/users');
+//var User = mongoose.model('User');
+var User = require('../models/User');
+var UserCtrl= require('../controller/objetoCtrl');
+var Clases= mongoose.model('Clases');
+var Alumnos= mongoose.model('Alumnos');
+var Evaluaciones= mongoose.model('Evaluaciones');
+var userIdGlobal;
+// Get Homepage
+router.get('/', ensureAuthenticated, function(req, res){
+	res.render('index');
 });
 
-var mongoose=require('mongoose');
+function ensureAuthenticated(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	} else {
+		//req.flash('error_msg','You are not logged in');
+		res.redirect('/users/login');
+	}
+}
 
-var Clases=mongoose.model('Clases');
-var Alumnos=mongoose.model('Alumnos');
-var Evaluaciones=mongoose.model('Evaluaciones');
 
 
 
-//--------------------------------------------------------------METODOS DEL MODELO CLASES--------------------------------------------------------------
+
+//-------------------METODOS DEL MODELO CLASES----------------------------------
 //metodo get  listar clases
 router.get('/clases',function(req, res, next){
-  Clases.find(function(err, clases){
+
+userIdGlobal = UserCtrl.getUserId();
+//console.log(globalString);
+globalString=userIdGlobal;
+
+
+
+  Clases.find({userId:globalString}, function(err, clases){
     if(err){
       return next(err)
     }
@@ -31,7 +51,10 @@ router.get('/clases',function(req, res, next){
 //metodo post insertar clases
 router.post('/clase', function(req, res, next){
   var clase= new Clases(req.body);
-
+	//req.body.userId=globalString;
+	//claseIdGlobal=clase._id;
+	clase.userId=globalString;
+	//console.log(claseIdGlobal);
   clase.save(function(err, clase){
     if (err) {
       return next(err)
@@ -65,13 +88,21 @@ router.delete('/clase/:id',function(req, res){
   })
 });
 
+router.post('/view1', function(req, res) {
+    console.log(req.body._id);
+		globalClaseId=req.body._id;
+    //res.end();
+});
 
 
 
 //--------------------------------------------------------------METODOS DEL MODELO ALUMNOS--------------------------------------------------------------
 //metodo get  listar alumnos
-router.get('/alumnos',function(req, res, next){
-  Alumnos.find(function(err, alumnos){
+router.get('/cont_class/alumnos',function(req, res, next){
+
+
+	Alumnos.find({claseId:globalClaseId}, function(err, alumnos){
+
     if(err){
       return next(err)
     }
@@ -81,9 +112,9 @@ router.get('/alumnos',function(req, res, next){
 });
 
 //metodo post insertar alumnos
-router.post('/alumno', function(req, res, next){
+router.post('/cont_class/alumno', function(req, res, next){
   var alumno= new Alumnos(req.body);
-
+  alumno.userId=globalString;
   alumno.save(function(err, alumno){
     if (err) {
       return next(err)
@@ -94,7 +125,7 @@ router.post('/alumno', function(req, res, next){
 
 
 //metodo put alumnos
-router.put('/alumno/:id',function(req, res, next){
+router.put('/cont_class/alumno/:id',function(req, res, next){
   Alumnos.findById(req.params.id, function(err, alumno){
     alumno.nombre=req.body.nombre;
     alumno.apellido=req.body.apellido;
@@ -110,7 +141,7 @@ router.put('/alumno/:id',function(req, res, next){
 });
 
 //metodo delete alumnos
-router.delete('/alumno/:id',function(req, res){
+router.delete('/cont_class/alumno/:id',function(req, res){
   Alumnos.findByIdAndRemove(req.params.id, function(err){
     if (err) {
       res.send(err)
@@ -121,8 +152,8 @@ router.delete('/alumno/:id',function(req, res){
 
 //--------------------------------------------------------------METODOS DEL MODELO EVALUACIONES-----------------------------------------------------------------------
 //metodgo get evaluciones
-router.get('/evaluaciones',function(req, res, next){
-  Evaluaciones.find(function(err, evaluaciones){
+router.get('/cont_class/evaluaciones',function(req, res, next){
+  Evaluaciones.find({claseId:globalClaseId}, function(err, evaluaciones){
     if(err){
       return next(err)
     }
@@ -134,9 +165,9 @@ router.get('/evaluaciones',function(req, res, next){
 });
 
 //metodo post insertar evaluacion
-router.post('/evaluacion', function(req, res, next){
+router.post('/cont_class/evaluacion', function(req, res, next){
   var evaluacion= new Evaluaciones(req.body);
-
+evaluacion.userId=globalString;
   evaluacion.save(function(err, evaluacion){
     if (err) {
       return next(err)
@@ -147,7 +178,7 @@ router.post('/evaluacion', function(req, res, next){
 
 
 //metodo put evaluacion
-router.put('/evaluacion/:id',function(req, res, next){
+router.put('/cont_class/evaluacion/:id',function(req, res, next){
   Evaluaciones.findById(req.params.id, function(err, evaluacion){
     evaluacion.nombre_eva=req.body.nombre_eva;
     evaluacion.fecha=req.body.fecha;
@@ -164,7 +195,7 @@ router.put('/evaluacion/:id',function(req, res, next){
 });
 
 //metodo delete clases
-router.delete('/evaluacion/:id',function(req, res){
+router.delete('/cont_class/evaluacion/:id',function(req, res){
   Evaluaciones.findByIdAndRemove(req.params.id, function(err){
     if (err) {
       res.send(err)

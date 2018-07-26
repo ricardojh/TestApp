@@ -1,12 +1,13 @@
+
 <div class="jumbotron">
-   
+
     <!-- Button trigger modal -->
     <div style="justify-content: center;display: flex;">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     <i class="fas fa-user-plus"></i>Añadir Alumnos
             </button>
     </div>
-    
+
 <br>
 
 
@@ -19,7 +20,7 @@
     <table class="table" >
             <thead class="table-dark" >
               <tr>
-                
+
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Notas</th>
@@ -33,7 +34,7 @@
                 <td>{{alumno.apellido}}</td>
                 <td>{{alumno.notas}}</td>
                 <td>
-                    <button class="btn-primary" ng-click="getPromedio(alumno)">Promedio</button>    
+                    <button class="btn-primary" ng-click="getPromedio(alumno)">Promedio</button>
                 </td>
                 <td>
                   <span>
@@ -43,10 +44,10 @@
                     <i class="fas fa-trash-alt" ng-click="eliminar(alumno)"></i>
                   </span>
                   <span>
-                 
+
                 </td>
               </tr>
-              
+
             </tbody>
           </table>
 </div>

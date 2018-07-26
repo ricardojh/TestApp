@@ -1,10 +1,11 @@
 var mongoose =require('mongoose');
 //Svar Schema = mongoose.Schema;
-var Clases =mongoose.model('Clases');
- 
+var User =mongoose.model('User');
+
 var AlumnosSchema= new mongoose.Schema({
 
-        claseId: { type: mongoose.Schema.ObjectId, ref: "Clases"},
+        userId: String,
+        claseId:String,
         nombre: String,
         apellido: String,
         notas: []
